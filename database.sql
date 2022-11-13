@@ -1,6 +1,6 @@
 CREATE TABLE tasks_list (
     "id" serial PRIMARY KEY,
-    "name" varchar(20) NOT NULL,
+    "name" varchar(30) NOT NULL,
     "description" varchar(250),
     "date" varchar(45) NOT NULL,
     "completed" boolean NOT NULL
