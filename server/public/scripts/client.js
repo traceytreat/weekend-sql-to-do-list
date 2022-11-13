@@ -42,7 +42,7 @@ function addTask(task){
         url: '/tasks',
         data: task
     }).then((response) => {
-        Swal.fire('Task added successfully.');
+        Swal.fire('Task added successfully.', '', 'success');
         getTasks();
     }).catch((error) => {
         console.log('Ajax POST error: ', error);
@@ -109,7 +109,7 @@ function render(response){
     // update koala table
     for (let task of response) {
         $('#tasks').append(`
-            <tr>
+            <tr class="${task.completed ? 'isCompleted' : 'notCompleted'}">
                 <td data-id='${task.id}'>${task.name}</td>
                 <td data-id='${task.id}'>${task.description}</td>
                 <td data-id='${task.id}'>${task.date}</td>

@@ -23,3 +23,23 @@ body {
 #create-task:active {
     background-color: #403b80;
 }
+
+table {
+    width: 100%;
+}
+
+table,
+th,
+td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+.isCompleted {
+    background-color: rgb(189, 250, 189);
+}
+
+.notCompleted {
+    background-color: rgb(240, 240, 240);
+}
