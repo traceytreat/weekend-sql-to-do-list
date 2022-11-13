@@ -7,7 +7,7 @@ const pool = require('../modules/pool');
 // Get
 router.get('/', (req, res) => {
     // Get tasks from database
-    let queryText = `SELECT * FROM "tasks_list";`;
+    let queryText = `SELECT * FROM "tasks_list" ORDER BY "completed" ASC;`;
     pool.query(queryText)
         .then((result) => {
             console.log('successful GET');
