@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const moment = require('moment');
 const pool = require('../modules/pool');
+
 
 // Get
 router.get('/', (req, res) => {
@@ -21,11 +23,12 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     // Add new task to database
     const newTask = req.body;
+    const newDate = moment().format('MMMM Do YYYY, h:mm:ss a');
     const queryText = `INSERT INTO "tasks_list"
                         ("name","description","date","completed")
                         VALUES ($1, $2, $3, $4)
     `;
-    pool.query(queryText, [newTask.name, newTask.description, newTask.date, newTask.completed])
+    pool.query(queryText, [newTask.name, newTask.description, newDate, newTask.completed])
         .then(() => {
             console.log('successful POST');
             res.sendStatus(201);
