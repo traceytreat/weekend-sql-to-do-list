@@ -82,8 +82,9 @@ function deleteTask(){
     let name = $(this).data('name');
     Swal.fire({
         title: `Are you sure you want to delete the task '${name}'?`,
+        text: `This cannot be undone!`,
         showCancelButton: true,
-        confirmButtonText: 'Delete',
+        confirmButtonText: `Delete '${name}'`,
     }).then((result) => {
         if (result.isConfirmed) {
             const id = $(this).data('id');
