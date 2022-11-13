@@ -113,7 +113,7 @@ function render(response){
                 <td data-id='${task.id}'>${task.name}</td>
                 <td data-id='${task.id}'>${task.description}</td>
                 <td data-id='${task.id}'>${task.date}</td>
-                <td data-id='${task.id}'>${task.completed}</td>
+                <td data-id='${task.id}'>${task.datecompleted}</td>
                 <td><button class="delete-btn" data-name='${task.name}' data-id='${task.id}'>Delete</button></td>
                 <td class="completedBox">${task.completed ? 'Completed!' : `<button class="complete-btn" data-id='${task.id}'>Complete Task</button>`}</td>
             </tr>

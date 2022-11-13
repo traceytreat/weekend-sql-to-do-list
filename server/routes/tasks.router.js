@@ -25,10 +25,10 @@ router.post('/', (req, res) => {
     const newTask = req.body;
     const newDate = moment().format('MMMM Do YYYY, h:mm:ss a');
     const queryText = `INSERT INTO "tasks_list"
-                        ("name","description","date","completed")
-                        VALUES ($1, $2, $3, $4)
+                        ("name","description","date", "datecompleted", "completed")
+                        VALUES ($1, $2, $3, $4, $5)
     `;
-    pool.query(queryText, [newTask.name, newTask.description, newDate, newTask.completed])
+    pool.query(queryText, [newTask.name, newTask.description, newDate, '', newTask.completed])
         .then(() => {
             console.log('successful POST');
             res.sendStatus(201);
@@ -41,14 +41,20 @@ router.post('/', (req, res) => {
 
 // Put
 router.put('/:id', (req, res) => {
+    const dateCompleted = moment().format('MMMM Do YYYY, h:mm:ss a');
     // Change task to completed
-    const queryText = `UPDATE "tasks_list" SET "completed" = true WHERE id=$1`
-    pool.query(queryText, [req.params.id])
+    const queryText = `UPDATE "tasks_list" 
+                        SET 
+                        "completed" = true, 
+                        "datecompleted" = $1
+                        WHERE id=$2
+                        `
+    pool.query(queryText, [dateCompleted, req.params.id])
         .then(() => {
             console.log('Successfully set task to completed');
             res.sendStatus(200);
         })
-        .catch((err) => {
+        .catch((error) => {
             console.log('error with PUT ', error);
             res.sendStatus(500);
         })
